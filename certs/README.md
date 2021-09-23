@@ -1,0 +1,1 @@
+Put the certs in this folder before running docker-compose.

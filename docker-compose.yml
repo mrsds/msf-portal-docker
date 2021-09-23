@@ -1,0 +1,24 @@
+version: '3'
+services:
+  webserver:
+    build: webserver
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "./certs:/home/msf/certs"
+  msf-ui:
+    build: msf-ui
+    expose:
+      - 3000
+  msf-be:
+    build:
+      context: msf-be
+    expose:
+      - 9090
+    env_file:
+      env.conf
+  msf-static:
+    build: msf-static-layers
+    expose: 
+      - 80

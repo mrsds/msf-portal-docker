@@ -1,0 +1,9 @@
+[submodule "msf-ui"]
+	path = msf-ui
+	url = https://github.com/mrsds/msf-ui.git
+[submodule "msf-static-layers"]
+	path = msf-static-layers
+	url = https://github.com/mrsds/msf-static-layers.git
+[submodule "msf-be"]
+	path = msf-be
+	url = https://github.com/mrsds/msf-be.git
