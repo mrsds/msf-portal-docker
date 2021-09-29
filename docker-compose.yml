@@ -4,7 +4,7 @@ services:
     build: webserver
     ports:
       - "80:80"
-      - "443:443"
+      - "1443:443"
     volumes:
       - "./certs:/home/msf/certs"
   msf-ui:
