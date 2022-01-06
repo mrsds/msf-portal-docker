@@ -3,6 +3,10 @@ README by Josh Rodriguez and Kathryn Yu
 
 ### Setup
 
+### Prerequisites
+- Have access to a terminal, where the majority of the commands below will be run
+- Have Git and Docker installed on your machine
+
 #### Initialize the submodules
 Run `git submodule init`, then `git submodule update` to update the submodules.
 
