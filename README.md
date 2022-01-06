@@ -3,7 +3,7 @@ README by Josh Rodriguez and Kathryn Yu
 
 ### Setup
 
-### Prerequisites
+#### Prerequisites
 - Have access to a terminal, where the majority of the commands below will be run
 - Have Git and Docker installed on your machine
 
@@ -32,5 +32,5 @@ Run `docker-compose build` to build the images. This may take some time.
 ### Start 
 Run `docker-compose up` to start the containers.
 
-### FAQ: How do I ingest new data into the portal?
+#### FAQ: How do I ingest new data into the portal?
 Please see the `msf-ingestion` repository, which is separate from this one and is NOT one of this web app's submodules. Data ingestion is a separate process from running the web app itself.
