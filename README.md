@@ -62,11 +62,12 @@ The primary host is a stock Amazon Linux server running dockerized containers ho
 
 ###### RDS
 Database is a clustered (load-balanced) instance of Amazon Aurora PostgreSQL 9.6.12. It is optimized for more performant reads (given scarcity of writes). Firewall rules should allow access from EC2 instance (backend), and owners network (for ingestion access). Backend will be configured to access cluster head endpoint rather than any individual nodes. Ingestion should be configured to write to Writer node specifically. 
+
     - At minimum: 
-Single db.r4.2xlarge 
+    Single db.r4.2xlarge 
     - Preferred: 
-Cluster w/ single db.r4.2xlarge (Writer), 
-and 1-n (autoscaling) db.r4.2xlarge (Reader)
+    Cluster w/ single db.r4.2xlarge (Writer), 
+    and 1-n (autoscaling) db.r4.2xlarge (Reader)
     DB: Aurora PostgreSQL 9.6.12
     Extension: PostGIS
     Matching subnet to EC2 instance, allowing inbound port 5432
