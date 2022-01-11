@@ -2,7 +2,6 @@
 README by Kevin Gill, Josh Rodriguez, Robert Tapella, and Kathryn Yu
 
 ### Setup (local instance)
-
 #### Prerequisites
 - Have access to a terminal, where the majority of the commands below will be run
 - Have Git and Docker installed on your machine
@@ -63,7 +62,6 @@ The primary host is a stock Amazon Linux server running dockerized containers ho
 
 ###### RDS
 Database is a clustered (load-balanced) instance of Amazon Aurora PostgreSQL 9.6.12. It is optimized for more performant reads (given scarcity of writes). Firewall rules should allow access from EC2 instance (backend), and owners network (for ingestion access). Backend will be configured to access cluster head endpoint rather than any individual nodes. Ingestion should be configured to write to Writer node specifically. 
-
     - At minimum: 
 Single db.r4.2xlarge 
     - Preferred: 
@@ -100,9 +98,10 @@ The S3 bucket should be publicly accessible (read-only) with configuration added
 `$ sh -i mykeypair.pem ec2-user@ipaddress`
 - Clone this Git repository. Then run the steps for `Setup (local instance)`
 
-### FAQ: How do I edit the landing page?
+### FAQ
+#### How do I edit the landing page?
 This site uses a landing page by default. To edit its contents, see `src/components/LandingPage/LandingPage.js`
-### FAQ: How do I edit the Help documents?
+#### How do I edit the Help documents?
 This site uses .md files to populate its `Help` container. To edit its contents, see all .md files under `default-data/msf-data/help/`
-### FAQ: How do I ingest new data into the portal?
+#### How do I ingest new data into the portal?
 Please see the `msf-flow` and `msf-ingestion` repositories, which are separate from this one (they are also NOT submodules). Data ingestion is a separate process from running the web app itself.
