@@ -139,7 +139,7 @@ Please see the `msf-flow` and `msf-ingestion` repositories, which are separate f
         "visibleInGroup": true
     }
     
-- Make sure the "handleAs" is set to "gridded_geojson", "group" is labeled `GRIDDED`, the "url" in "metadata" is set to the metadata you added previously, the "thumbnailImage" is set to the thumbnail image added previously, and keep track of the "id" set here. 
+- Make sure the "handleAs" is set to `gridded_geojson`, "group" is labeled `GRIDDED`, the "url" in "metadata" is set to the metadata you added previously, the "thumbnailImage" is set to the thumbnail image added previously. 
 - Now in `/msf-ui/src/constants/appConfig.js` edit the `GRIDDED_LAYER_TYPES` array to include your new gridded layer. Ensure that the "name" matches the "id". For example:
 
     {
