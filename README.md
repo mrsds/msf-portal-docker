@@ -106,3 +106,43 @@ This site uses a landing page by default. To edit its contents, see `src/compone
 This site uses .md files to populate its `Help` container. To edit its contents, see all .md files under `default-data/msf-data/help/`
 #### How do I ingest new data into the portal?
 Please see the `msf-flow` and `msf-ingestion` repositories, which are separate from this one (they are also NOT submodules). Data ingestion is a separate process from running the web app itself.
+#### How do I add a new layer to the "Gridded Emission Maps" dropdown?
+- Add the new gridded layer's geojson file into `/msf-static-layers/files/data`
+- Add a JSON file into `/msf-static-layers/files/data` that consists of an array of dates represented in the above geojson file
+- Add the geojson's metadata (as a JSON file) into `/msf-ui/src/default-data/msf-data/layer-metadata`
+- Add the PNG thumbnail image of the layer into `/msf-ui/src/styles/resources/img/layer_thumbnails`
+- Add your new layer into `/msf-ui/src/default-data/msf-data/layers.json`. For example:
+    {
+            "id": "GRIDDED_EMISSIONS_PERMIAN",
+            "title": "Permian Regional Flux Inversion",
+            "type": "data",
+            "handleAs": "gridded_geojson",
+            "isDefault": false,
+            "url": "/server/data/permian-thumb-2019.geojson",
+            "thumbnailImage": "img/permian-thumb.png",
+            "opacity": 0.6,
+            "metadata": {
+                "url": "default-data/msf-data/layer-metadata/Grid-Permian.json",
+                "handleAs": "json"
+            },
+            "units": "kg/km2/hr",
+            "updateParameters": { "time": false },
+            "palette": {
+                "name": "permian",
+                "handleAs": "json-fixed",
+                "min": "0",
+                "max": "15"
+            },
+            "layerOrder": 1,
+            "group": "GRIDDED",
+            "visibleInGroup": true
+    }
+- Make sure the "handleAs" is set to "gridded_geojson", "group" is labeled `GRIDDED`, the "url" in "metadata" is set to the metadata you added previously, the "thumbnailImage" is set to the thumbnail image added previously, and keep track of the "id" set here. 
+- Now in `/msf-ui/src/constants/appConfig.js` edit the `GRIDDED_LAYER_TYPES` array to include your new gridded layer. Ensure that the "name" matches the "id". For example:
+    {
+            name: "GRIDDED_EMISSIONS_PERMIAN",
+            dateEndpoint: beEndpoint + "/data/permian-thumb-date-list.json",
+            endpoint: beEndpoint + "/data/permian-thumb-{date}.geojson",
+            sdapTimeSeriesSpark: "https://methane-sdap-sit.jpl.nasa.gov/nexus/timeSeriesSpark?ds=M2AF_REGIONAL_LABASIN_CH4_fluxes&minLon={lonMin}&minLat={latMin}&maxLon={lonMax}&maxLat={latMax}&startTime={timeStart}&endTime={timeEnd}",
+            period: "yearly"
+    }
