@@ -112,37 +112,39 @@ Please see the `msf-flow` and `msf-ingestion` repositories, which are separate f
 - Add the geojson's metadata (as a JSON file) into `/msf-ui/src/default-data/msf-data/layer-metadata`
 - Add the PNG thumbnail image of the layer into `/msf-ui/src/styles/resources/img/layer_thumbnails`
 - Add your new layer into `/msf-ui/src/default-data/msf-data/layers.json`. For example:
+
     {
-            "id": "GRIDDED_EMISSIONS_PERMIAN",
-            "title": "Permian Regional Flux Inversion",
-            "type": "data",
-            "handleAs": "gridded_geojson",
-            "isDefault": false,
-            "url": "/server/data/permian-thumb-2019.geojson",
-            "thumbnailImage": "img/permian-thumb.png",
-            "opacity": 0.6,
-            "metadata": {
-                "url": "default-data/msf-data/layer-metadata/Grid-Permian.json",
-                "handleAs": "json"
-            },
-            "units": "kg/km2/hr",
-            "updateParameters": { "time": false },
-            "palette": {
-                "name": "permian",
-                "handleAs": "json-fixed",
-                "min": "0",
-                "max": "15"
-            },
-            "layerOrder": 1,
-            "group": "GRIDDED",
-            "visibleInGroup": true
+        "id": "GRIDDED_EMISSIONS_PERMIAN",
+        "title": "Permian Regional Flux Inversion",
+        "type": "data",
+        "handleAs": "gridded_geojson",
+        "isDefault": false,
+        "url": "/server/data/permian-thumb-2019.geojson",
+        "thumbnailImage": "img/permian-thumb.png",
+        "opacity": 0.6,
+        "metadata": {
+            "url": "default-data/msf-data/layer-metadata/Grid-Permian.json",
+            "handleAs": "json"
+        },
+        "units": "kg/km2/hr",
+        "updateParameters": { "time": false },
+        "palette": {
+            "name": "permian",
+            "handleAs": "json-fixed",
+            "min": "0",
+            "max": "15"
+        },
+        "layerOrder": 1,
+        "group": "GRIDDED",
+        "visibleInGroup": true
     }
+    
 - Make sure the "handleAs" is set to "gridded_geojson", "group" is labeled `GRIDDED`, the "url" in "metadata" is set to the metadata you added previously, the "thumbnailImage" is set to the thumbnail image added previously, and keep track of the "id" set here. 
 - Now in `/msf-ui/src/constants/appConfig.js` edit the `GRIDDED_LAYER_TYPES` array to include your new gridded layer. Ensure that the "name" matches the "id". For example:
+
     {
-            name: "GRIDDED_EMISSIONS_PERMIAN",
-            dateEndpoint: beEndpoint + "/data/permian-thumb-date-list.json",
-            endpoint: beEndpoint + "/data/permian-thumb-{date}.geojson",
-            sdapTimeSeriesSpark: "https://methane-sdap-sit.jpl.nasa.gov/nexus/timeSeriesSpark?ds=M2AF_REGIONAL_LABASIN_CH4_fluxes&minLon={lonMin}&minLat={latMin}&maxLon={lonMax}&maxLat={latMax}&startTime={timeStart}&endTime={timeEnd}",
-            period: "yearly"
+        name: "GRIDDED_EMISSIONS_PERMIAN",
+        dateEndpoint: beEndpoint + "/data/permian-thumb-date-list.json",
+        endpoint: beEndpoint + "/data/permian-thumb-{date}.geojson",
+        period: "yearly"
     }
